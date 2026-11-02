@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const links = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "/" },
   { label: "All Books", href: "#books" },
-  { label: "Add Book", href: "#add-book" },
+  { label: "Add Book", href: "add-book" },
   { label: "My Books", href: "#my-books" },
   { label: "My Borrows", href: "#my-borrows" },
 ];
@@ -12,14 +12,21 @@ export default function NavbarSection() {
   return (
     <header className="w-full bg-white">
       <div className="mx-auto flex min-h-20 max-w-310 items-center justify-between gap-8 px-6 sm:px-10">
-        <Link href="#home" aria-label="Book Nook home" className="flex shrink-0 items-center gap-2.5">
+        <Link
+          href="#home"
+          aria-label="Book Nook home"
+          className="flex shrink-0 items-center gap-2.5"
+        >
           <span className="size-9 rounded-xl bg-[#c83242]" aria-hidden="true" />
           <span className="font-serif text-[27px] font-bold leading-none tracking-[-1.5px] text-[#171717]">
             Book<span className="italic text-[#c83242]">Nook</span>
           </span>
         </Link>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-7 md:flex">
+        <nav
+          aria-label="Main navigation"
+          className="hidden items-center gap-7 md:flex"
+        >
           {links.map((link, index) => (
             <Link
               key={link.label}
@@ -52,7 +59,10 @@ export default function NavbarSection() {
         </div>
       </div>
 
-      <nav aria-label="Mobile navigation" className="flex gap-6 overflow-x-auto border-t border-neutral-100 px-6 py-3 md:hidden">
+      <nav
+        aria-label="Mobile navigation"
+        className="flex gap-6 overflow-x-auto border-t border-neutral-100 px-6 py-3 md:hidden"
+      >
         {links.map((link, index) => (
           <Link
             key={link.label}
