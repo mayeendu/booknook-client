@@ -43,16 +43,16 @@ export default function NavbarSection() {
 
         <div className="flex shrink-0 items-center gap-2.5">
           <Link
-            href="#login"
+            href="/login"
             className="inline-flex h-12 items-center justify-center rounded-[5px] border border-[#222] px-6 text-[13px] font-semibold tracking-[1.4px] text-[#222] transition-colors hover:bg-neutral-50"
           >
             LOGIN
           </Link>
           <Link
-            href="#register"
+            href="/signup"
             className="inline-flex h-12 items-center justify-center rounded-[5px] bg-[#c83242] px-7 text-[13px] font-semibold tracking-[1.4px] text-white transition-colors hover:bg-[#b52b3a]"
           >
-            REGISTER
+            SIGNUP
           </Link>
         </div>
       </div>
