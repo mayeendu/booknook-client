@@ -2,10 +2,9 @@ import Link from "next/link";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "All Books", href: "#books" },
-  { label: "Add Book", href: "add-book" },
-  { label: "My Books", href: "#my-books" },
-  { label: "My Borrows", href: "#my-borrows" },
+  { label: "All Books", href: "/all-books" },
+  { label: "Add Book", href: "/add-book" },
+  { label: "My Books", href: "/my-books" },
 ];
 
 export default function NavbarSection() {
@@ -32,11 +31,10 @@ export default function NavbarSection() {
               key={link.label}
               href={link.href}
               aria-current={index === 0 ? "page" : undefined}
-              className={`relative py-2 text-[15px] font-medium transition-colors hover:text-[#c83242] ${
-                index === 0
-                  ? "text-[#c83242] after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-[#c83242]"
-                  : "text-[#252525]"
-              }`}
+              className={`relative py-2 text-[15px] font-medium transition-colors hover:text-[#c83242] ${index === 0
+                ? "text-[#c83242] after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-[#c83242]"
+                : "text-[#252525]"
+                }`}
             >
               {link.label}
             </Link>

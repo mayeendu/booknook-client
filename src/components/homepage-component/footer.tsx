@@ -27,8 +27,8 @@ export default function FooterSection() {
           <div>
             <h2 className="mb-5 text-sm font-bold tracking-[2px] text-white">CONTACT</h2>
             <address className="space-y-2.5 text-base not-italic">
-              <p><a className="transition-colors hover:text-white" href="mailto:hello@yourdomain.com">hello@[YOUR DOMAIN]</a></p>
-              <p>[YOUR PHONE]</p>
+              <p><a className="transition-colors hover:text-white" href="mailto:hello@yourdomain.com">Mayeen Uddin</a></p>
+              <p>01922203782</p>
               <p>Narsingdi, Bangladesh</p>
             </address>
           </div>
