@@ -65,7 +65,7 @@ export default function BannerSection() {
                     <p className="mb-5 text-xs font-semibold tracking-[3px] text-[#a33a43] sm:text-[13px]">{slide.eyebrow}</p>
                     <Heading className="font-serif text-[clamp(2.75rem,6vw,4.75rem)] font-medium leading-[1.04] tracking-[-2px] text-[#19191b]">{slide.title}</Heading>
                     <p className="mt-5 max-w-122.5 text-base leading-[1.7] text-[#55534f] sm:text-lg">{slide.description}</p>
-                    <Link href="#books" tabIndex={current === index ? 0 : -1} className="mt-8 inline-flex h-12 items-center justify-center rounded-[5px] bg-[#c83242] px-7 text-[13px] font-semibold tracking-[1.3px] text-white transition-colors hover:bg-[#b52b3a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c83242]">
+                    <Link href="/all-books" tabIndex={current === index ? 0 : -1} className="mt-8 inline-flex h-12 items-center justify-center rounded-[5px] bg-[#c83242] px-7 text-[13px] font-semibold tracking-[1.3px] text-white transition-colors hover:bg-[#b52b3a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c83242]">
                       BROWSE BOOKS
                     </Link>
                   </div>
@@ -73,7 +73,7 @@ export default function BannerSection() {
                     <div className="relative aspect-4/3 sm:aspect-5/4">
                       <Image src={slide.image} alt={slide.alt} fill sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 100vw" loading={index === 0 ? "eager" : "lazy"} className="object-cover" />
                     </div>
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-6 pt-16 pb-6 font-serif text-xl text-white sm:text-2xl">{slide.caption}</figcaption>
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-6 pt-16 pb-6 font-serif text-xl text-white sm:text-2xl">{slide.caption}</figcaption>
                   </figure>
                 </div>
               </CarouselItem>

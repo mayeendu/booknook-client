@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import BookCard from "@/components/book-card";
 import { getBooks, type Book } from "@/lib/books";
 import { Suspense } from "react";
+import { Link } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "All Books | BookNook",
@@ -42,9 +43,9 @@ async function BookCollection() {
                     We couldn&apos;t load the books. Please try again in a moment.
                 </p>
                 {/* A full reload retries the failed server fetch on this same page. */}
-                <a href="/all-books" className="mt-6 inline-block rounded bg-[#c83242] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#b52b3a]">
+                <Link href="/all-books" className="mt-6 inline-block rounded bg-[#c83242] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#b52b3a]">
                     Try again
-                </a>
+                </Link>
             </div>
         );
     }

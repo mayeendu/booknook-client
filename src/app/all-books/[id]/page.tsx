@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { getBooks, type Book } from "@/lib/books";
 import AddMyBookButton from "@/components/add-my-book-button";
+import EditBookDialog from "@/components/edit-book-dialog";
+import DeleteBookDialog from "@/components/delet-book-dialog";
 
 export const metadata: Metadata = {
   title: "Book Detailes | BookNook",
@@ -36,7 +38,12 @@ async function BookDetails({ params }: BookDetailsPageProps) {
   if (!book) notFound();
 
   return (
-    <article className="grid items-start gap-10 md:grid-cols-[minmax(0,340px)_1fr] md:gap-14">
+    <article className="grid items-start gap-10 md:grid-cols-[minmax(0,340px)_1fr] md:gap-x-14">
+      <div className="flex flex-wrap justify-end gap-3 md:col-span-2">
+
+        <EditBookDialog book={book} />
+        <DeleteBookDialog bookId={book._id} bookTitle={book.title} />
+      </div>
       <div className="relative mx-auto aspect-332/482 w-full max-w-85 overflow-hidden bg-[#f5f5f5] shadow-lg">
         <Image src={book.image} alt={`Cover of ${book.title}`} fill unoptimized loading="eager" sizes="(min-width: 400px) 340px, 100vw" className="object-cover" />
       </div>
