@@ -1,4 +1,4 @@
-
+"use client"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -16,14 +16,14 @@ import {
     FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { Link } from "lucide-react"
+import Link from "next/link";
 
 export default function SignUpPage() {
     return (
         <div className="mx-auto flex w-full max-w-lg flex-col gap-6 px-5 py-12 sm:px-6 sm:py-20">
             <Card className="gap-7 overflow-hidden rounded-2xl border border-[#e5e0d6] bg-white py-8 text-[#29272a] shadow-[0_20px_65px_-20px_rgba(70,42,32,0.18)] sm:py-10">
                 <CardHeader className="gap-3 px-6 text-center sm:px-10">
-                    <CardTitle className="font-serif text-3xl font-semibold tracking-tight text-[#19191b] sm:text-4xl">Welcome back</CardTitle>
+                    <CardTitle className="font-serif text-3xl font-semibold tracking-tight text-[#19191b] sm:text-4xl">Welcome to BookNook</CardTitle>
                     <CardDescription className="text-sm leading-6 text-[#77716b]">
                         Login with your Apple or Google account
                     </CardDescription>
