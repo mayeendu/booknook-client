@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import { Suspense } from "react";
 import { getBooks, type Book } from "@/lib/books";
 import NewArrivalBookCard from "@/components/homepage-component/new-arrival-book-card";
 
 async function ArrivalBooks() {
+  await connection();
+
   let books: Book[];
 
   try {
