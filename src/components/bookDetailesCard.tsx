@@ -43,8 +43,8 @@ export default function BookDetailesCard({
       </div>
 
       <div className="grid items-center gap-9 p-5 sm:p-8 md:grid-cols-[minmax(250px,0.78fr)_1.22fr] md:gap-12 md:p-12">
-        <div className="relative mx-auto w-full max-w-[350px] rounded-2xl bg-[#f3eee6] p-3 shadow-[0_18px_36px_rgba(54,40,28,0.16)] sm:p-4">
-          <div className="relative aspect-[2/3] overflow-hidden rounded-xl bg-[#e8e0d4]">
+        <div className="relative mx-auto w-full max-w-87.5 rounded-2xl bg-[#f3eee6] p-3 shadow-[0_18px_36px_rgba(54,40,28,0.16)] sm:p-4">
+          <div className="relative aspect-2/3 overflow-hidden rounded-xl bg-[#e8e0d4]">
             <Image
               src={book.image}
               alt={`Cover of ${book.title}`}
@@ -84,7 +84,7 @@ export default function BookDetailesCard({
             </span>
           </p>
 
-          <div className="my-7 h-px bg-gradient-to-r from-[#d9c9b9] via-[#eee7dd] to-transparent" />
+          <div className="my-7 h-px bg-linear-to-r from-[#d9c9b9] via-[#eee7dd] to-transparent" />
 
           <h3 className="font-serif text-2xl font-semibold text-[#211d19]">
             A little about this book

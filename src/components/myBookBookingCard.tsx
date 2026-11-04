@@ -76,7 +76,7 @@ export default function MyBookBookingCard({ booking }: MyBookBookingCardProps) {
 
   return (
     <article className="grid gap-5 rounded-2xl border border-[#e9e4dc] bg-white p-4 shadow-[0_8px_28px_rgba(43,35,27,0.06)] transition-shadow hover:shadow-[0_14px_36px_rgba(43,35,27,0.10)] sm:grid-cols-[150px_minmax(0,1fr)_220px] sm:items-center sm:gap-6 sm:p-5">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#f0ece5] sm:aspect-[5/4]">
+      <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-[#f0ece5] sm:aspect-5/4">
         <Image
           src={coverImage}
           alt={`Cover of ${title}`}
