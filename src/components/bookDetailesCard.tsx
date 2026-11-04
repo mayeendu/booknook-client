@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import Image from "next/image";
 import type { Book } from "@/lib/books";
 import AddMyBookButton from "@/components/add-my-book-button";
@@ -11,14 +11,16 @@ import { authClient } from "@/lib/auth-client";
 
 type BookDetailesCardProps = {
   book: Book;
+  initialBookingDate: string;
 };
 
-export default function BookDetailesCard({ book }: BookDetailesCardProps) {
+export default function BookDetailesCard({
+  book,
+  initialBookingDate,
+}: BookDetailesCardProps) {
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  const [bookingDate, setBookingDate] = useState(() =>
-    new Date().toISOString().slice(0, 10),
-  );
+  const [bookingDate, setBookingDate] = useState(initialBookingDate);
 
   useEffect(() => {
     if (user) console.log("Current user:", user);
@@ -26,34 +28,6 @@ export default function BookDetailesCard({ book }: BookDetailesCardProps) {
 
   function handleBookingDateChange(event: ChangeEvent<HTMLInputElement>) {
     setBookingDate(event.currentTarget.value);
-  }
-
-  async function handleBookingBook(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const data = {
-      ...book,
-      userName: user?.name,
-      email: user?.email,
-      image: user?.image,
-      bookingDate,
-    };
-
-    try {
-      const response = await fetch("http://localhost:5000/booking", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const bookingResdata: unknown = await response.json();
-      console.log(data);
-      console.log(bookingResdata);
-    } catch (error) {
-      console.error("Unable to create booking:", error);
-    }
   }
 
   return (
@@ -127,24 +101,16 @@ export default function BookDetailesCard({ book }: BookDetailesCardProps) {
             >
               Choose a booking date
             </label>
-            <form onSubmit={handleBookingBook}>
-              <Input
-                id="booking-date"
-                type="date"
-                name="bookingDate"
-                aria-label="booking date"
-                value={bookingDate}
-                onChange={handleBookingDateChange}
-                className="mt-2 h-11 rounded-xl border-[#e2d9ce] bg-white px-3"
-              />
-              <button
-                type="submit"
-                className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-[#c83242] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b52b3a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c83242]"
-              >
-                Book this date
-              </button>
-            </form>
-            <AddMyBookButton bookId={book._id} />
+            <Input
+              id="booking-date"
+              type="date"
+              name="bookingDate"
+              aria-label="booking date"
+              value={bookingDate}
+              onChange={handleBookingDateChange}
+              className="mt-2 h-11 rounded-xl border-[#e2d9ce] bg-white px-3"
+            />
+            <AddMyBookButton book={book} bookingDate={bookingDate} user={user} />
           </div>
         </div>
       </div>

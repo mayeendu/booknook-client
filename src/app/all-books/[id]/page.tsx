@@ -34,7 +34,12 @@ async function BookDetails({ params }: BookDetailsPageProps) {
   const book = books.find((item) => item._id === id);
   if (!book) notFound();
 
-  return <BookDetailesCard book={book} />;
+  return (
+    <BookDetailesCard
+      book={book}
+      initialBookingDate={new Date().toISOString().slice(0, 10)}
+    />
+  );
 }
 
 export default function BookDetailsPage({ params }: BookDetailsPageProps) {

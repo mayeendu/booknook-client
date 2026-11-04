@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BookCard from "@/components/book-card";
 import { getBooks, type Book } from "@/lib/books";
 import { Suspense } from "react";
-import { Link } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "All Books | BookNook",
