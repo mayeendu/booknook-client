@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { getBooks, type Book } from "@/lib/books";
-import AddMyBookButton from "@/components/add-my-book-button";
-import EditBookDialog from "@/components/edit-book-dialog";
-import DeleteBookDialog from "@/components/delet-book-dialog";
+import BookDetailesCard from "@/components/bookDetailesCard";
 
 export const metadata: Metadata = {
   title: "Book Detailes | BookNook",
@@ -37,36 +34,7 @@ async function BookDetails({ params }: BookDetailsPageProps) {
   const book = books.find((item) => item._id === id);
   if (!book) notFound();
 
-  return (
-    <article className="grid items-start gap-10 md:grid-cols-[minmax(0,340px)_1fr] md:gap-x-14">
-      <div className="flex flex-wrap justify-end gap-3 md:col-span-2">
-
-        <EditBookDialog book={book} />
-        <DeleteBookDialog bookId={book._id} bookTitle={book.title} />
-      </div>
-      <div className="relative mx-auto aspect-332/482 w-full max-w-85 overflow-hidden bg-[#f5f5f5] shadow-lg">
-        <Image src={book.image} alt={`Cover of ${book.title}`} fill unoptimized loading="eager" sizes="(min-width: 400px) 340px, 100vw" className="object-cover" />
-      </div>
-      <div className="py-2">
-        <p className="text-sm font-semibold tracking-[0.15em] text-[#a33a43] uppercase">{book.category}</p>
-        <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-[#19191b] sm:text-5xl">{book.title}</h2>
-        <p className="mt-4 text-lg text-[#777]">By {book.author.trim()}</p>
-        <div className="mt-7 border-y border-[#e8e3da] py-5">
-          <p className="font-medium text-[#55534f]">
-            {book.totalCopies > 0
-              ? `${book.totalCopies} ${book.totalCopies === 1 ? "copy" : "copies"} available`
-              : "Currently unavailable"}
-          </p>
-        </div>
-
-        <h3 className="mt-8 font-serif text-2xl font-semibold text-[#19191b]">About this book</h3>
-        <p className="mt-4 whitespace-pre-line text-base leading-8 text-[#55534f]">
-          {book.description || "No description is available for this book yet."}
-        </p>
-        <AddMyBookButton bookId={book._id} />
-      </div>
-    </article>
-  );
+  return <BookDetailesCard book={book} />;
 }
 
 export default function BookDetailsPage({ params }: BookDetailsPageProps) {
