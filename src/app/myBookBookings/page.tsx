@@ -17,10 +17,15 @@ async function MyBookBookings() {
   }
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+  const jwtToken = await auth.api.getToken({ headers: await headers() });
+  if (!jwtToken?.token) return <div>Please sign in to view your bookings.</div>;
   const [res, catalog] = await Promise.all([
     fetch(
       `${apiUrl}/my-bookings/${encodeURIComponent(user.email)}`,
-      { cache: "no-store" },
+      {
+        headers: { authorization: `Bearer ${jwtToken.token}` },
+        cache: "no-store",
+      },
     ),
     getBooks().catch(() => []),
   ]);

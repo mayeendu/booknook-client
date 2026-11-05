@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { getBearerAuthHeaders } from "@/lib/auth-client";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -36,8 +37,10 @@ const DeleteBookDialog = ({ bookId, bookTitle }: { bookId: string; bookTitle: st
         setError(null);
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+            const authHeaders = await getBearerAuthHeaders();
             const response = await fetch(`${apiUrl.replace(/\/$/, "")}/all-books/${encodeURIComponent(bookId)}`, {
                 method: "DELETE",
+                headers: authHeaders,
                 signal: AbortSignal.timeout(10000),
             });
             if (!response.ok) {

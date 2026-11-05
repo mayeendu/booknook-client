@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { BookOpen, ImagePlus, Loader2, Plus } from "lucide-react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 type BookFormData = {
   title: string;
@@ -51,9 +52,15 @@ export default function AddBookPage() {
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+      const { data: tokenData, error: tokenError } = await authClient.token();
+      if (tokenError || !tokenData?.token) {
+        throw new Error("Please sign in again to add a book.");
+      }
+
       const response = await fetch(`${apiUrl}/add-book`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${tokenData.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),

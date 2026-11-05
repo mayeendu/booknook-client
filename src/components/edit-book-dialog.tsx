@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { getBearerAuthHeaders } from "@/lib/auth-client";
 import type { Book } from "@/lib/books";
 import {
     Dialog,
@@ -62,9 +63,10 @@ const EditBookDialog = ({ book }: { book: Book }) => {
         setError(null);
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+            const authHeaders = await getBearerAuthHeaders();
             const response = await fetch(`${apiUrl.replace(/\/$/, "")}/all-books/${encodeURIComponent(book._id)}`, {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+                headers: { ...authHeaders, "Content-Type": "application/json" },
                 body: JSON.stringify({ ...formData, title: formData.title.trim(), author: formData.author.trim(),
                     image: formData.image.trim(), description: formData.description.trim(), totalCopies }),
                 signal: AbortSignal.timeout(10000),

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { getBooks, type Book } from "@/lib/books";
+import type { Book } from "@/lib/books";
 import BookDetailesCard from "@/components/bookDetailesCard";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
@@ -17,16 +17,25 @@ type BookDetailsPageProps = {
 
 async function BookDetails({ params }: BookDetailsPageProps) {
   const { id } = await params;
-  let books: Book[];
-
-  const jwtToken = await auth.api.getToken({
-    headers: await headers(),
-  });
-
-  console.log(jwtToken?.token);
+  let book: Book | undefined;
 
   try {
-    books = await getBooks();
+    const jwtToken = await auth.api.getToken({
+      headers: await headers(),
+    });
+
+    const apiUrl = process.env.BOOKS_API_URL ?? "http://localhost:5000/all-books";
+    const res = await fetch(`${apiUrl.replace(/\/$/, "")}/${encodeURIComponent(id)}`, {
+      headers: jwtToken?.token
+        ? { authorization: `Bearer ${jwtToken.token}` }
+        : undefined,
+      cache: "no-store",
+      signal: AbortSignal.timeout(10000),
+    });
+
+    if (!res.ok) throw new Error("Unable to fetch book details");
+
+    book = (await res.json()) as Book;
   } catch {
     return (
       <div role="alert" className="py-16 text-center">
@@ -44,7 +53,6 @@ async function BookDetails({ params }: BookDetailsPageProps) {
     );
   }
 
-  const book = books.find((item) => item._id === id);
   if (!book) notFound();
 
   return (

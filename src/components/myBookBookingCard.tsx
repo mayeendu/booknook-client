@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { CalendarDays, CheckCircle2, Loader2, UserRound } from "lucide-react";
 import type { Book } from "@/lib/books";
+import { getBearerAuthHeaders } from "@/lib/auth-client";
 
 export type MyBookBooking = Partial<Book> & {
   bookingId?: string;
@@ -51,9 +52,10 @@ export default function MyBookBookingCard({ booking }: MyBookBookingCardProps) {
     setCancelling(true);
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+      const authHeaders = await getBearerAuthHeaders();
       const response = await fetch(
         `${apiUrl}/my-bookings/${encodeURIComponent(bookingId)}`,
-        { method: "DELETE", signal: AbortSignal.timeout(10000) },
+        { method: "DELETE", headers: authHeaders, signal: AbortSignal.timeout(10000) },
       );
 
       if (!response.ok) {

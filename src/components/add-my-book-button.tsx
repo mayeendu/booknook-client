@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import type { Book } from "@/lib/books";
+import { getBearerAuthHeaders } from "@/lib/auth-client";
 
 type AddMyBookButtonProps = {
   book: Book;
@@ -48,9 +49,10 @@ export default function AddMyBookButton({
         bookImage: book.image,
         bookingDate,
       };
+      const authHeaders = await getBearerAuthHeaders();
       const response = await fetch(`${apiUrl}/booking`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { ...authHeaders, "Content-Type": "application/json" },
         body: JSON.stringify(bookingData),
         signal: AbortSignal.timeout(10000),
       });
