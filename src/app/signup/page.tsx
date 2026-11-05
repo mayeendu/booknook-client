@@ -31,11 +31,6 @@ export default function SignUpPage() {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    console.log({
-      name: formData.get("name"),
-      image: formData.get("image"),
-      email: formData.get("email"),
-    });
     const name = String(formData.get("name") ?? "").trim();
     const image = String(formData.get("image") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();

@@ -113,8 +113,6 @@ export default function AddBookPage() {
     }
   };
 
-  console.log(formData);
-
   return (
     <main className="min-h-screen bg-[#f5f2ea] px-4 py-14 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-3xl">

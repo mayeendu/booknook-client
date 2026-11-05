@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ChangeEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import Image from "next/image";
 import type { Book } from "@/lib/books";
 import AddMyBookButton from "@/components/add-my-book-button";
@@ -21,10 +21,6 @@ export default function BookDetailesCard({
   const { data: session } = authClient.useSession();
   const user = session?.user;
   const [bookingDate, setBookingDate] = useState(initialBookingDate);
-
-  useEffect(() => {
-    if (user) console.log("Current user:", user);
-  }, [user]);
 
   function handleBookingDateChange(event: ChangeEvent<HTMLInputElement>) {
     setBookingDate(event.currentTarget.value);

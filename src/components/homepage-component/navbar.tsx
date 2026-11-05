@@ -18,7 +18,7 @@ const links = [
   { label: "Home", href: "/" },
   { label: "All Books", href: "/all-books" },
   { label: "Add Book", href: "/add-book" },
-  { label: "My Books", href: "/myBookBookings" },
+  { label: "My Borrow Books", href: "/myBookBookings" },
 ];
 
 export default function NavbarSection() {

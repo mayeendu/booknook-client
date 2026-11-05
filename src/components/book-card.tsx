@@ -8,8 +8,6 @@ type BookCardProps = {
 };
 
 export default function BookCard({ book, loading = "lazy" }: BookCardProps) {
-  console.log(book);
-
   return (
     <article className="text-center">
       <div className="relative aspect-332/482 overflow-hidden bg-[#f5f5f5]">

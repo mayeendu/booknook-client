@@ -134,7 +134,7 @@ export default function LogInPage() {
                   {isSubmitting ? "Logging in..." : "Login"}
                 </Button>
                 <FieldDescription className="text-center">
-                  Don't Have an account? <Link href="/signup">Sign Up</Link>
+                  Don&apos;t Have an account? <Link href="/signup">Sign Up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>
